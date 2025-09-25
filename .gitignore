@@ -1,0 +1,40 @@
+# Node modules
+node_modules/
+
+# Expo files
+.expo/
+.expo-shared/
+
+# Build output
+dist/
+build/
+web-build/
+
+# Metro bundler cache
+.cache/
+tmp/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# VSCode settings
+.vscode/
+
+# Yarn & npm
+yarn-error.log
+package-lock.json
+npm-debug.log
+
+# Misc
+.idea/
+*.swp
+*.swo
