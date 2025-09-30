@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Pressable, Image, TextInput } from 'react-native';
+import { View, StyleSheet, Text, Pressable, Image, TextInput, StatusBar } from 'react-native';
 import { Checkbox } from 'expo-checkbox';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
@@ -12,18 +12,23 @@ export default function SingUp() {
 
   const router = useRouter();
   const goBack = () => {
-    try {
-      router.back();
-    } catch {
-      router.push("/")
-    }
+    router.push("/")
   };
   const goLogIn = () => {
     router.push("/LogIn");
   }
 
+  const signUp = () => {
+    router.push("/Home");
+  }
+
+  const signUpGoogle = () => {
+    router.push("/Home");
+  }
+
   return (
     <View style={styles.container}>
+      <StatusBar hidden={true}/>
       <Pressable style={styles.header} onPress={goBack}>
         <Image style={[styles.arrow]} source={require('@/assets/images/arrow-left.png')}/>
         <Text style={[Typography.pageHeader]}>Sign Up</Text>
@@ -46,7 +51,7 @@ export default function SingUp() {
           <Text style={[Typography.formLabel]}>I agree with <Text style={[Typography.formLabel, Typography.bold]}>Terms</Text> & <Text style={[Typography.formLabel, Typography.bold]}>Privacy</Text></Text>
         </View>
         <View style={[styles.formElement]}>
-          <LargeButton style='primary'>Sign Up</LargeButton>
+          <LargeButton style='primary' onPress={signUp}>Sign Up</LargeButton>
         </View>
         <View style={[styles.formElement, styles.formElementLine]}>
           <View style={[styles.line]}/>
@@ -54,9 +59,7 @@ export default function SingUp() {
           <View style={[styles.line]}/>
         </View>
         <View style={[styles.formElement, styles.formElementCenter]}>
-          <LargeButton style='google'>
-            <Image source={require('@/assets/images/google.png')}/>
-          </LargeButton>
+          <LargeButton style='google' onPress={signUpGoogle}/>
         </View>
         <Pressable style={[styles.formElement, styles.formElementCenter]} onPress={goLogIn}>
           <Text style={[Typography.formLabel]}>Already have an account? <Text style={[Typography.formLabel, Typography.bold]}>Sign In</Text></Text>

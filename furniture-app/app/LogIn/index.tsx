@@ -1,29 +1,31 @@
-import { View, StyleSheet, Text, Pressable, Image, TextInput } from 'react-native';
-import { Checkbox } from 'expo-checkbox';
+import { View, StyleSheet, Text, Pressable, Image, TextInput, StatusBar } from 'react-native';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
 
 import Typography from '@/constants/typography';
 import Colors from '@/constants/colors';
 import LargeButton from '@/components/ui/LargeButton';
 
 export default function LogIn() {
-  const [consent, setConsent] = useState(false)
 
   const router = useRouter();
   const goBack = () => {
-    try {
-      router.back();
-    } catch {
-      router.push("/")
-    }
+    router.push("/")
   };
   const goSignUp = () => {
     router.push("/SignUp");
   }
 
+  const login = () => {
+    router.push("/Home");
+  }
+
+  const loginGoogle = () => {
+    router.push("/Home");
+  }
+
   return (
     <View style={styles.container}>
+      <StatusBar hidden={true}/>
       <Pressable style={styles.header} onPress={goBack}>
         <Image style={[styles.arrow]} source={require('@/assets/images/arrow-left.png')}/>
         <Text style={[Typography.pageHeader]}>Sign In</Text>
@@ -38,7 +40,7 @@ export default function LogIn() {
           <TextInput style={[styles.textInput, Typography.textInput]} placeholder='••••••••••••' placeholderTextColor={Colors.lightGrey} secureTextEntry></TextInput>
         </View>
         <View style={[styles.formElement]}>
-          <LargeButton style='primary'>Sign In</LargeButton>
+          <LargeButton style='primary' onPress={login}>Sign In</LargeButton>
         </View>
         <View style={[styles.formElement, styles.formElementLine]}>
           <View style={[styles.line]}/>
@@ -46,12 +48,10 @@ export default function LogIn() {
           <View style={[styles.line]}/>
         </View>
         <View style={[styles.formElement, styles.formElementCenter]}>
-          <LargeButton style='google'>
-            <Image source={require('@/assets/images/google.png')} style={[styles.google]}/>
-          </LargeButton>
+          <LargeButton style='google' onPress={loginGoogle}/>
         </View>
         <Pressable style={[styles.formElement, styles.formElementCenter]} onPress={goSignUp}>
-          <Text style={[Typography.formLabel]}>Already have an account? <Text style={[Typography.formLabel, Typography.bold]}>Sign In</Text></Text>
+          <Text style={[Typography.formLabel]}>Don't have an account? <Text style={[Typography.formLabel, Typography.bold]}>Sign Up</Text></Text>
         </Pressable>
       </View>
     </View>
@@ -104,10 +104,5 @@ const styles = StyleSheet.create({
     flex: 1, 
     height: 1,
     backgroundColor: Colors.lightGrey
-  },
-  google: {
-    height: 30,
-    width: 30,
-    resizeMode: 'contain',
   }
 });

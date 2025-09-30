@@ -34,6 +34,16 @@ const Typography = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
   },
+  smallButton: {
+    fontFamily: BASE_FONT_FAMILY,
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  topBar: {
+    fontFamily: BASE_FONT_FAMILY,
+    fontSize: 16,
+    fontWeight: '700',
+  },
   text: {
     fontFamily: BASE_FONT_FAMILY,
     fontSize: 14,
